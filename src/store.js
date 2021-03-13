@@ -7,7 +7,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    settings: { initialSearchQuery: 'eminem', searchQuery: '', panelType: 'card', bookmarkIcon: 'fa-star', perPage: '20', youtubeLink: 'false' },
+    settings: { initialSearchQuery: '', searchQuery: '', panelType: 'card', bookmarkIcon: 'fa-star', perPage: '20', youtubeLink: 'false' },
     albums: [],
     albumTracks: [],
     bookmarkAlbums: [],
@@ -115,7 +115,7 @@ export default new Vuex.Store({
       Snackbar.open({
         message: message,
         type: 'is-danger',
-        position: 'is-top',
+        position: 'is-bottom',
         actionText: 'Reload App',
         indefinite: true,
         onAction: () => {

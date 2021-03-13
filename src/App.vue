@@ -27,7 +27,7 @@
     <main>
       <transition name="fade">
         <recent-search-box
-          v-if="showRecentSearchBox && recentSearch.length > 0"
+          v-if="showRecentSearchBox &&  recentSearch && recentSearch.length > 0"
           :recentSearch="recentSearch"
           @clickSearchItem="searchAlbums"
           @clickRemoveRecentSearchItem="removeRecentSearchItem">
@@ -60,11 +60,11 @@
       <!-- album tracklist modal -->
       <b-modal
         :active.sync="isAlbumTracksModalActive"
-        :canCancel=true has-modal-card
+        :canCancel= true has-modal-card
         :onCancel="resetAlbumTracks"
         scroll="clip"
         >
-        <div class="columns is-mobile is-centered" v-if="!albumTracksFailed && albumTracks.length === 0" >
+        <div class="columns is-mobile is-centered" v-if="!albumTracksFailed && albumTracks && albumTracks.length === 0" >
           <div class="columns is-mobile"  >
             <div class="column loading">
                 <b-loading :is-full-page="false" :active.sync="isAlbumTracksLoading" :can-cancel="false"></b-loading>
@@ -92,7 +92,7 @@
         </album-track-list>
       </b-modal>
     </main>
-    <the-footer :class="{'footer-fixed': pageType === 'search' && albums.length === 0 || pageType === 'bookmarks' && bookmarkAlbums.length === 0 || isAlbumLoading }"></the-footer>
+    <the-footer :class="{'footer-fixed': pageType === 'search' && albums && albums.length === 0 || pageType === 'bookmarks' && bookmarkAlbums && bookmarkAlbums.length === 0 || isAlbumLoading }"></the-footer>
   </div>
 </template>
 
@@ -277,8 +277,7 @@ $link-focus-border: $primary;
 @import "~buefy/src/scss/buefy";
 
 // transitions
-.list-enter-active,
-{
+.list-enter-active{
   transition: all .5s;
 }
 .list-leave-active {

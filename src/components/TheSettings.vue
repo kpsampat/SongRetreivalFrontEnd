@@ -9,7 +9,8 @@
           <label>Initial Search Query</label>
         </div>
         <div class="column is-6">
-          <b-input v-model="settings.initialSearchQuery"></b-input>
+          <!-- <b-input v-model="settings.initialSearchQuery"></b-input> -->
+          <b-input></b-input>
         </div>
         <div class="column is-6">
           <label>Panel Type</label>

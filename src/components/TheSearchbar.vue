@@ -6,7 +6,7 @@
         expanded
           v-model="searchQuery"
           :data="filteredDataArray"
-          placeholder="e.g. Eminem"
+          placeholder="e.g. Song Name or Any Special Incident In a Song"
           icon="magnify"
           @select="option => selected = option"
           @keyup.enter="onClickSearch"
@@ -46,7 +46,7 @@ export default {
     }
   },
   mounted () {
-    this.searchQuery = this.settings.initialSearchQuery
+    // this.searchQuery = this.settings.initialSearchQuery
     this.onClickSearch()
   },
   watch: {
