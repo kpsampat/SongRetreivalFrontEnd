@@ -7,7 +7,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    settings: { initialSearchQuery: '', searchQuery: '', panelType: 'card', bookmarkIcon: 'fa-star', perPage: '20', youtubeLink: 'false' },
+    settings: { initialSearchQuery: '', searchQuery: '', panelType: 'card', bookmarkIcon: 'fa-star', perPage: '10', youtubeLink: 'false' },
     albums: [],
     albumTracks: [],
     bookmarkAlbums: [],
@@ -71,7 +71,7 @@ export default new Vuex.Store({
       state.albums = data
     },
     SET_ALBUM_TRACKS: (state, data) => {
-      state.albumTracks = data
+      state.albumTracks = data.songs
     },
     SEARCH_FAILED: (state, action) => {
       state.searchFailed = action
@@ -139,9 +139,10 @@ export default new Vuex.Store({
           // assign the search data results to set album state and query to set search query state
           commit('IS_ALBUM_LOADING', false)
           commit('SEARCH_FAILED', false)
-          commit('SET_ALBUM', data.results)
-          commit('SET_SEARCH_QUERY', payload.query)
-          dispatch('SAVE_TO_RECENT_SEARCH', payload.query)
+          // commit('SET_ALBUM', data.results)
+          commit('SET_ALBUM', data.songs)
+          commit('SET_SEARCH_QUERY', payload)
+          dispatch('SAVE_TO_RECENT_SEARCH', payload)
         }
       } catch (err) {
         // if error commit search failed and clear the search input
@@ -297,11 +298,11 @@ export default new Vuex.Store({
           commit('RESET_ALBUM_TRACKS')
         }
         const { data } = await axios.get(`${payload.url}`)
-        if (data.results.length === 0) {
+        if (data.songs.length === 0) {
           commit('SET_ALBUM_TRACKS_FAILED', true)
           commit('IS_ALBUM_TRACKS_LOADING', false)
         } else {
-          commit('SET_ALBUM_TRACKS', data.results)
+          commit('SET_ALBUM_TRACKS', data.songs)
           commit('IS_ALBUM_TRACKS_LOADING', false)
         }
       } catch (err) {

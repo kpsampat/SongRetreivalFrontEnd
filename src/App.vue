@@ -158,9 +158,16 @@ export default {
     window.removeEventListener('scroll', this.toggleNavbar)
   },
   methods: {
+    // searchAlbums (query) {
+    //   if (query) {
+    //     const payload = { 'url': `/api/search?term=${query}&entity=album&media=music`, 'query': query }
+    //     this.$store.dispatch('SEARCH_ALBUMS', payload)
+    //   }
+    //   this.$store.commit('SET_PAGE_TYPE', 'search')
+    // },
     searchAlbums (query) {
       if (query) {
-        const payload = { 'url': `/api/search?term=${query}&entity=album&media=music`, 'query': query }
+        const payload = { 'url': `https://86012095w6.execute-api.us-east-1.amazonaws.com/default/return_video_id` }
         this.$store.dispatch('SEARCH_ALBUMS', payload)
       }
       this.$store.commit('SET_PAGE_TYPE', 'search')
@@ -213,6 +220,13 @@ export default {
     showSettingsModal () {
       this.isSettingsModalActive = true
     },
+    // getAlbumTracks (albumId) {
+    //   if (albumId) {
+    //     this.isAlbumTracksModalActive = true
+    //     const payload = { 'url': `/api/lookup?id=${albumId}&entity=song` }
+    //     this.$store.dispatch('GET_ALBUM_TRACKS', payload)
+    //   }
+    // },
     getAlbumTracks (albumId) {
       if (albumId) {
         this.isAlbumTracksModalActive = true

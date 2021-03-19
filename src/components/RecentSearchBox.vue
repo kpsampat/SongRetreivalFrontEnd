@@ -46,6 +46,7 @@ export default {
     },
     onClickSearchItem (item) {
       if (item !== this.$store.state.settings.searchQuery) {
+        // this.$forceUpdate(item)
         this.$emit('clickSearchItem', item)
       }
     }
